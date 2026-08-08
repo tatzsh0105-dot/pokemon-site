@@ -1,16 +1,73 @@
-# React + Vite
+# ポケモンカード大会管理アプリ
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 概要
+ポケモンカードの非公認大会を管理するWebアプリ
+## 作成背景
+ユーザが自由に大会情報の追加、削除、変更できるものが私が探した中では見つからなかったため、今回管理アプリを作成した。これによってページオーナー以外でも情報の追加ができるため、より多くの大会情報をdbに反映ができると考えた。大会の追加・編集・削除に加え、都道府県や日付による検索、終了した大会を非表示にする機能を実装。UIを意識して作成を行った。
 
-Currently, two official plugins are available:
+## 使用技術
+### フロントエンド
+- React
+- JavaScript
+- Vite
+### バックエンド
+- FastAPI
+- Python
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+### データベース
+- SQLite
+## 主な機能
+- 大会一覧表示
+- 大会追加（Create）
+- 大会編集（Update）
+- 大会削除（Delete）
+- 都道府県検索
+- 日付検索
+- 終了した大会を非表示
+- 大会URLへアクセス
+- 開催時間・都道府県のプルダウン入力
 
-## React Compiler
+## 工夫した点
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- 編集機能を追加し、大会情報を削除せずに更新できるようにした
+- 開催時間と都道府県をプルダウン化し、入力ミスや表記ずれを防止
+- 検索機能を実装し、目的の大会を探しやすくした
+- 終了した大会を非表示にする機能を追加し、開催予定の大会だけを確認できるようにした。
 
-## Expanding the ESLint configuration
+## ディレクトリ構成
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```
+pokemon-site
+├── src
+│   ├── App.jsx
+│   └── main.jsx
+├── main.py
+├── init_db.py
+├── seed.py
+└── tournaments.db
+```
+
+## 起動方法
+
+### フロントエンド
+
+```bash
+npm install
+npm run dev
+```
+
+### バックエンド
+
+```bash
+uvicorn main:app --reload
+```
+
+## 今後追加したい機能
+
+- ログイン機能
+- 大会ごとに画像の挿入
+
+- 検索機能の充実
+- - ソート機能（開催日・参加費）
+- - 画面レイアウトの改善（1列に複数表示など）
+- - 日程による昇順降順での表示変更など
